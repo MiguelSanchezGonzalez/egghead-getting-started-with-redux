@@ -2,4 +2,4 @@
 // All your TS belongs here
 //
 
-import './counter-redux/index';
+import './counter-custom-store/index';
