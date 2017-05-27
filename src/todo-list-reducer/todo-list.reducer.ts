@@ -8,12 +8,13 @@ export interface Todo {
 
 
 export enum TodoListActions {
-    add
+    add,
+    toggle
 }
 
 export interface TodoListAction extends Action {
     type: TodoListActions;
-    payload: Todo;
+    payload: Todo | number;
 }
 
 
@@ -29,12 +30,24 @@ const addTodo = ( list: Todo[], todo: Todo ): Todo[] => ( [
 ] );
 
 
+const toggleTodo = ( todo: Todo ): Todo => ( {
+    ...todo,
+    completed: !todo.completed
+} );
+
+
+const toggleTodoOnList = ( todos: Todo[], id: number ): Todo[] =>
+    todos.map( todo => todo.id === id ? toggleTodo( todo ): todo );
+
+
 export const todoListReducer: Reducer<Todo[]> =
     ( state: Todo[] = [], action: TodoListAction ): Todo[] => {
 
     switch ( action.type ) {
         case TodoListActions.add:
-            return addTodo( state, todoFactory( action.payload ) );
+            return addTodo( state, todoFactory( <Todo>action.payload ) );
+        case TodoListActions.toggle:
+            return toggleTodoOnList( state, <number>action.payload );
         default:
             return state;
     }
