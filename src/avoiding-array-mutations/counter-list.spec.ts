@@ -2,12 +2,10 @@ import * as expect from 'expect';
 import { CounterList } from './counter-list';
 
 
-function clf () {
-    return new CounterList( [ 0, 20, 10 ] );
-}
+const clf = () => new CounterList( [ 0, 20, 10 ] );
 
 
-function testAddCounter () {
+const testAddCounter = () => {
 
     const list = clf();
     const before = list.getCounters();
@@ -17,10 +15,10 @@ function testAddCounter () {
         list.addCounter( 1 )
     ).toEqual( after );
 
-}
+};
 
 
-function testRemoveCounter () {
+const testRemoveCounter = () => {
 
     const list = clf();
     const before = list.getCounters();
@@ -30,10 +28,10 @@ function testRemoveCounter () {
         list.removeCounter( 1 )
     ).toEqual( after );
 
-}
+};
 
 
-function testIncrementCounter () {
+const testIncrementCounter = () => {
 
     const list = clf();
     const before = list.getCounters();
@@ -46,7 +44,7 @@ function testIncrementCounter () {
 }
 
 
-export function test () {
+export const test = () => {
 
     // Tests
     testAddCounter();
@@ -55,4 +53,4 @@ export function test () {
 
     console.log( 'All good' );
 
-}
+};
