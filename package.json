@@ -5,7 +5,8 @@
   "scripts": {
     "prebuild": "rm -rf output/",
     "build": "webpack --optimize-minimize",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "test": "jest"
   },
   "keywords": [
     "typescript",
@@ -21,17 +22,35 @@
     "redux": "^3.6.0"
   },
   "devDependencies": {
+    "@types/enzyme": "^2.8.0",
     "@types/expect": "^1.20.1",
+    "@types/jest": "^19.2.3",
     "@types/react": "^15.0.25",
     "@types/react-dom": "^15.5.0",
+    "@types/react-test-renderer": "^15.5.0",
     "@types/redux": "^3.6.0",
     "awesome-typescript-loader": "^3.1.3",
     "deepfreeze": "^2.0.0",
+    "enzyme": "^2.8.2",
     "expect": "^1.20.2",
     "html-webpack-plugin": "^2.28.0",
     "http-server": "^0.10.0",
+    "jest": "^20.0.4",
+    "react-test-renderer": "^15.5.4",
+    "ts-jest": "^20.0.4",
     "typescript": "^2.3.3",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.spec)\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
   }
 }
