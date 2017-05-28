@@ -10,13 +10,14 @@ import {
     VisibilityFilterComponent
 } from './visibility-filter/visibility-filter.component';
 
+import { FooterComponent } from './footer/footer.component';
+
 export interface AppComponentProps {
     todos: Todo[];
     activeFilter: string;
     onAddTodo: ( text: string ) => void;
     onMarkAsCompleted: ( todo: Todo ) => void;
     onMarkAsUncompleted: ( todo: Todo ) => void;
-    onFilterChange: ( filter: string ) => void;
 }
 
 export interface AppComponentState {
@@ -59,9 +60,7 @@ export class AppComponent
                         onMarkAsUncompleted: todo => this.props.onMarkAsUncompleted( todo )
                     }}/>
 
-                <VisibilityFilterComponent
-                    activeFilter={this.props.activeFilter}
-                    onFilterChange={this.props.onFilterChange}/>
+                <FooterComponent />
 
             </div>
         );
@@ -77,7 +76,6 @@ export const render = ( props: AppComponentProps ) =>
             onAddTodo={props.onAddTodo}
             onMarkAsCompleted={props.onMarkAsCompleted}
             onMarkAsUncompleted={props.onMarkAsUncompleted}
-            onFilterChange={props.onFilterChange}
             />,
         document.getElementById( 'app' )
     );
