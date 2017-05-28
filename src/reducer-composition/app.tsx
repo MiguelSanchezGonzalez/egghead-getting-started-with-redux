@@ -6,6 +6,9 @@ import { TodoComponent } from './todo/todo.component';
 import { VisibilityFilter } from './visibility-filter/visibility-filter';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { AddTodoComponent } from './add-todo/add-todo.component';
+import {
+    VisibilityFilterComponent
+} from './visibility-filter/visibility-filter.component';
 
 export interface AppComponentProps {
     todos: Todo[];
@@ -27,13 +30,9 @@ export class AppComponent
 
     constructor ( properties ) {
         super( properties );
-        this.onFilterChange = this.onFilterChange.bind( this );
         this.getVisibleTodos = this.getVisibleTodos.bind( this );
     }
 
-    private onFilterChange ( { target: { value } } ) {
-        this.props.onFilterChange( value )
-    }
 
     private getVisibleTodos ( filter: VisibilityFilter ) {
         switch ( filter ) {
@@ -49,21 +48,21 @@ export class AppComponent
     render () {
         return (
             <div id="todo-app">
+
                 <AddTodoComponent
                     onAddTodo={this.props.onAddTodo}/>
+
                 <TodoListComponent
                     todos={this.getVisibleTodos( this.props.activeFilter )}
                     todoProps={{
                         onMarkAsCompleted: todo => this.props.onMarkAsCompleted( todo ),
                         onMarkAsUncompleted: todo => this.props.onMarkAsUncompleted( todo )
                     }}/>
-                <select
-                    value={this.props.activeFilter}
-                    onChange={this.onFilterChange}>
-                    <option value={VisibilityFilter.all}>All</option>
-                    <option value={VisibilityFilter.completed}>Completed</option>
-                    <option value={VisibilityFilter.uncompleted}>Uncompleted</option>
-                </select>
+
+                <VisibilityFilterComponent
+                    activeFilter={this.props.activeFilter}
+                    onFilterChange={this.props.onFilterChange}/>
+
             </div>
         );
     }
