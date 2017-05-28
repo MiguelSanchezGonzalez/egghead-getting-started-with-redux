@@ -5,7 +5,7 @@ import { Todo } from './todo/todo';
 import { TodoComponent } from './todo/todo.component';
 import { VisibilityFilter } from './visibility-filter/visibility-filter';
 import { TodoListComponent } from './todo-list/todo-list.component';
-
+import { AddTodoComponent } from './add-todo/add-todo.component';
 
 export interface AppComponentProps {
     todos: Todo[];
@@ -27,28 +27,8 @@ export class AppComponent
 
     constructor ( properties ) {
         super( properties );
-
-        this.state = {
-            text: ''
-        };
-
-        this.onChange = this.onChange.bind( this );
-        this.onAdd = this.onAdd.bind( this );
         this.onFilterChange = this.onFilterChange.bind( this );
         this.getVisibleTodos = this.getVisibleTodos.bind( this );
-    }
-
-    private onChange ( { target: { value } } ) {
-        this.setState( {
-            text: value
-        } );
-    }
-
-    private onAdd () {
-        this.props.onAddTodo( this.state.text );
-        this.setState( {
-            text: ''
-        } );
     }
 
     private onFilterChange ( { target: { value } } ) {
@@ -69,8 +49,8 @@ export class AppComponent
     render () {
         return (
             <div id="todo-app">
-                <input type="text" value={this.state.text} onChange={this.onChange}/>
-                <button onClick={this.onAdd}>Add Todo</button>
+                <AddTodoComponent
+                    onAddTodo={this.props.onAddTodo}/>
                 <TodoListComponent
                     todos={this.getVisibleTodos( this.props.activeFilter )}
                     todoProps={{
