@@ -1,15 +1,8 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 
-import { Todo } from './todo/todo';
-import { TodoComponent } from './todo/todo.component';
-import { VisibilityFilter } from './visibility-filter/visibility-filter';
-import { TodoListComponent } from './todo-list/todo-list.component';
+// Application - components
 import { AddTodoComponent } from './add-todo/add-todo.component';
-import {
-    VisibilityFilterComponent
-} from './visibility-filter/visibility-filter.component';
-
 import { FooterComponent } from './footer/footer.component';
 import {
     VisibleTodoListComponent
