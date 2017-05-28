@@ -12,6 +12,7 @@ import { VisibilityFilter } from '../visibility-filter/visibility-filter';
 import { TodoListComponent } from '../todo-list/todo-list.component';
 import { TodoListActions } from '../todo-list/todo-list.reducer';
 
+
 interface VisibleTodoListComponentState {
     todos: Todo[];
     filter: string;

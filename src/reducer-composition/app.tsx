@@ -8,19 +8,15 @@ import {
     VisibleTodoListComponent
 } from './visible-todo-list/visible-todo-list.component';
 
-export interface AppComponentProps {
-    onAddTodo: ( text: string ) => void;
-}
 
 export class AppComponent
-    extends React.Component<AppComponentProps, undefined> {
+    extends React.Component<undefined, undefined> {
 
-    render () {
+    public render (): JSX.Element {
         return (
             <div id="todo-app">
 
-                <AddTodoComponent
-                    onAddTodo={this.props.onAddTodo}/>
+                <AddTodoComponent/>
 
                 <VisibleTodoListComponent/>
 
@@ -32,9 +28,8 @@ export class AppComponent
 }
 
 
-export const render = ( props: AppComponentProps ) =>
+export const render = () =>
     ReactDom.render(
-        <AppComponent
-            onAddTodo={props.onAddTodo}/>,
+        <AppComponent/>,
         document.getElementById( 'app' )
     );
