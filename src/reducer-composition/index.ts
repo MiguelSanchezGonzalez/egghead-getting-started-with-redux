@@ -34,12 +34,21 @@ const  onAddTodo = ( text: string ) =>
     } );
 
 
+const onFilterChange = ( filter: string ) =>
+    store.dispatch( {
+        type: VisibilityFilterActions.set,
+        payload: filter
+    } );
+
+
 const init = () => {
     render( {
         todos: getTodos(),
+        activeFilter: (<any>store.getState()).visibilityFilterReducer,
         onAddTodo,
         onMarkAsCompleted,
-        onMarkAsUncompleted
+        onMarkAsUncompleted,
+        onFilterChange
     } );
 }
 
