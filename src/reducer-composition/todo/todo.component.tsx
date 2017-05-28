@@ -4,10 +4,14 @@ import * as React from 'react';
 import { Todo } from './todo';
 
 
-export interface TodoComponentProps {
+export interface TodoComponentOutputs {
+    onMarkAsCompleted: ( ...any ) => void;
+    onMarkAsUncompleted: ( ...any ) => void;
+}
+
+
+export interface TodoComponentProps extends TodoComponentOutputs {
     todo: Todo;
-    onMarkAsCompleted: () => void;
-    onMarkAsUncompleted: () => void;
 }
 
 
