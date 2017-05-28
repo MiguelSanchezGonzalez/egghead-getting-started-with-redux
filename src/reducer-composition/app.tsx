@@ -11,40 +11,16 @@ import {
 } from './visibility-filter/visibility-filter.component';
 
 import { FooterComponent } from './footer/footer.component';
+import {
+    VisibleTodoListComponent
+} from './visible-todo-list/visible-todo-list.component';
 
 export interface AppComponentProps {
-    todos: Todo[];
-    activeFilter: string;
     onAddTodo: ( text: string ) => void;
-    onMarkAsCompleted: ( todo: Todo ) => void;
-    onMarkAsUncompleted: ( todo: Todo ) => void;
-}
-
-export interface AppComponentState {
-    text: string;
 }
 
 export class AppComponent
-    extends React.Component<AppComponentProps, AppComponentState> {
-
-    private text: string;
-
-    constructor ( properties ) {
-        super( properties );
-        this.getVisibleTodos = this.getVisibleTodos.bind( this );
-    }
-
-
-    private getVisibleTodos ( filter: VisibilityFilter ) {
-        switch ( filter ) {
-            case VisibilityFilter.completed:
-                return this.props.todos.filter( todo => todo.completed );
-            case VisibilityFilter.uncompleted:
-                return this.props.todos.filter( todo => !todo.completed );
-            default:
-                return this.props.todos;
-        }
-    }
+    extends React.Component<AppComponentProps, undefined> {
 
     render () {
         return (
@@ -53,12 +29,7 @@ export class AppComponent
                 <AddTodoComponent
                     onAddTodo={this.props.onAddTodo}/>
 
-                <TodoListComponent
-                    todos={this.getVisibleTodos( this.props.activeFilter )}
-                    todoProps={{
-                        onMarkAsCompleted: todo => this.props.onMarkAsCompleted( todo ),
-                        onMarkAsUncompleted: todo => this.props.onMarkAsUncompleted( todo )
-                    }}/>
+                <VisibleTodoListComponent/>
 
                 <FooterComponent />
 
@@ -71,11 +42,6 @@ export class AppComponent
 export const render = ( props: AppComponentProps ) =>
     ReactDom.render(
         <AppComponent
-            todos={props.todos}
-            activeFilter={props.activeFilter}
-            onAddTodo={props.onAddTodo}
-            onMarkAsCompleted={props.onMarkAsCompleted}
-            onMarkAsUncompleted={props.onMarkAsUncompleted}
-            />,
+            onAddTodo={props.onAddTodo}/>,
         document.getElementById( 'app' )
     );

@@ -35,11 +35,7 @@ const  onAddTodo = ( text: string ) =>
 
 const init = () => {
     render( {
-        todos: getTodos(),
-        activeFilter: (<any>store.getState()).visibilityFilterReducer,
-        onAddTodo,
-        onMarkAsCompleted,
-        onMarkAsUncompleted
+        onAddTodo
     } );
 }
 
