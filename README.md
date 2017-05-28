@@ -1,6 +1,10 @@
 # getting-started-with-redux
 
+Coding along the course [Getting started with redux](https://egghead.io/courses/getting-started-with-redux).
 
+In this case instead of using jsbin I just dropped a seed using [ts-seed](https://www.npmjs.com/package/@msg-labs/ts-seed) and added some dependencies.
+
+The most important pieces of code live inside [src/reducer-composition](https://github.com/MiguelSanchezGonzalez/egghead-getting-started-with-redux/tree/master/src/reducer-composition) as it includes a TODO list implementation using Typescript, React and Redux.
 
 ## Licensing
 
