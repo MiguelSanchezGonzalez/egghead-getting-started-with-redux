@@ -2,4 +2,4 @@
 // All your TS belongs here
 //
 
-import './counter-react/index';
+import './reducer-composition/index';
