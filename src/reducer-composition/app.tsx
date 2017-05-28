@@ -4,6 +4,7 @@ import * as ReactDom from 'react-dom';
 import { Todo } from './todo/todo';
 import { TodoComponent } from './todo/todo.component';
 import { VisibilityFilter } from './visibility-filter/visibility-filter';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 
 export interface AppComponentProps {
@@ -70,16 +71,12 @@ export class AppComponent
             <div id="todo-app">
                 <input type="text" value={this.state.text} onChange={this.onChange}/>
                 <button onClick={this.onAdd}>Add Todo</button>
-                <ul>
-                    {this.getVisibleTodos( this.props.activeFilter )
-                        .map( todo =>
-                        <TodoComponent
-                            key={todo.id}
-                            todo={todo}
-                            onMarkAsCompleted={() => this.props.onMarkAsCompleted( todo )}
-                            onMarkAsUncompleted={() => this.props.onMarkAsUncompleted( todo )} />
-                    )}
-                </ul>
+                <TodoListComponent
+                    todos={this.getVisibleTodos( this.props.activeFilter )}
+                    todoProps={{
+                        onMarkAsCompleted: todo => this.props.onMarkAsCompleted( todo ),
+                        onMarkAsUncompleted: todo => this.props.onMarkAsUncompleted( todo )
+                    }}/>
                 <select
                     value={this.props.activeFilter}
                     onChange={this.onFilterChange}>
